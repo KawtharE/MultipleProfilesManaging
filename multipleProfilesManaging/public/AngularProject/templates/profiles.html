@@ -1,0 +1,97 @@
+<div data-ng-init="getProfiles()">
+	<div class="list-profiles-title">
+	  <h3>List of all registered users</h3>
+	</div>
+
+	<div class="list-profiles">
+
+	  <table class="table" st-table="all.profiles" st-safe-src="profiles">
+	    <thead>
+	    <tr>
+	      <th class="first-row" st-sort="firstname" st-sort-default="true">First Name</th>
+	      <th class="first-row" st-sort="lastname">Last Name</th>
+	      <th class="first-row" st-sort="country">Country</th>
+	      <th class="first-row" st-sort="email">Email</th>
+	      <th></th>
+	    </tr>
+	    <tr>
+	      <th><input st-search="firstname" placeholder="search by First Name" class="input-sm form-control search-input" type="search"/></th>
+	      <th><input st-search="lastname" placeholder="search by Last Name" class="input-sm form-control search-input" type="search"/></th>
+	      <th><input st-search="country" placeholder="search by Country" class="input-sm form-control search-input" type="search"/></th>
+	      <th><input st-search="email" placeholder="search by Email" class="input-sm form-control search-input" type="search"/>
+	      </th>
+	      <th></th>
+	    </tr>
+	    </thead>
+	    <tbody >
+	    <tr ng-repeat="user in all.profiles">
+	      <td>{{user.firstname}}</td>
+	      <td>{{user.lastname}}</td>
+	      <td>{{user.country}}</td>
+	      <td>{{user.email}}</td>
+	      <td><button class="btn btn-info" ng-click="openProfile(user, 'lg')"><span class="glyphicon glyphicon-eye-open"></span></button></td>	 
+	    </tr>
+	    </tbody>
+	    <tfoot>
+	    <tr>
+	      <td colspan="5" class="text-center">
+	        <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+	      </td>
+	    </tr>
+	    </tfoot>
+	  </table>
+	</div>
+</div>
+
+<script type="text/ng-template" id="profile.html">
+	<div layout="column" ng-cloak class="md-inline-form">
+		<md-content layout-padding class="profile">
+		<span class="glyphicon glyphicon-remove remove-icon" ng-click="$dismiss()"></span>
+		    <div>
+	          <img class="picture" ng-src="http://localhost:8000/AngularProject/img/no-photo.png"/>
+			  <form name="userForm">
+			  <h3 class="with-line">Personal Information</h3>
+		        <div layout-gt-xs="row">
+		          <md-input-container class="md-block" flex-gt-xs>
+		            <h4>First Name: <span class="profile-details">{{user.firstname}}</span></h4>
+		          </md-input-container>
+
+		          <md-input-container class="md-block" flex-gt-xs>
+		          <h4>Last Name: <span class="profile-details">{{user.lastname}}</span></h4>
+		          </md-input-container>
+		        </div>
+
+		        <div layout-gt-xs="row">
+		          <md-input-container class="md-block" flex-gt-xs>
+		            <h4>Gender: <span class="profile-details">{{user.gender}}</span></h4>
+		          </md-input-container>
+
+		          <md-input-container class="md-block" flex-gt-xs>
+		            <h4>Birth Date: <span class="profile-details">{{user.birthDate}}</span></h4>
+		          </md-input-container>
+		        </div>
+		        <h3 class="with-line">Contact Information</h3>
+		        <div layout-gt-xs="row">
+		          <md-input-container class="md-block" flex-gt-xs>
+		          <h4>City: <span class="profile-details">{{user.city}}</span></h4>
+		          </md-input-container>
+
+		          <md-input-container class="md-block" flex-gt-xs>
+		            <h4>Country: <span class="profile-details">{{user.country}}</span></h4>
+		          </md-input-container>
+
+		        </div>
+				<div layout-gt-xs="row">
+			        <md-input-container class="md-block" flex-gt-xs>
+			          <h4>Email: <span class="profile-details">{{user.email}}</span></h4>
+			        </md-input-container>
+
+			        <md-input-container class="md-block" flex-gt-xs>
+			          <h4>Mobile: <span class="profile-details">{{user.mobile}}</span></h4>
+			        </md-input-container>
+				</div>
+		      </form>
+		    </div>
+		</md-content>
+	</div>
+</script>

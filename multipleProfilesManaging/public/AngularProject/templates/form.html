@@ -1,0 +1,94 @@
+<div layout="column" ng-cloak class="md-inline-form col-xs-10 col-sm-8 col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-1">
+	<md-content layout-padding class="form">
+	    <div>
+          <img class="picture" ng-src="http://localhost:8000/AngularProject/img/no-photo.png"/>
+		  <form name="userForm">
+	        <div layout-gt-xs="row">
+	          <md-input-container class="md-block" flex-gt-xs>
+	            <label>First Name</label>
+	            <input name="firstname" ng-model="user.firstname" required>
+	            <div ng-messages="userForm.firstname.$error" role="alert" multiple>
+	              <div ng-message="required" class="my-message">You must supply your Firstname.</div>
+	            </div>
+	          </md-input-container>
+
+	          <md-input-container class="md-block" flex-gt-xs>
+	            <label>Last Name</label>
+	            <input name="lastname" ng-model="user.lastname" required>
+	            <div ng-messages="userForm.lastname.$error" role="alert" multiple>
+	              <div ng-message="required" class="my-message">You must supply your Lastname.</div>
+	            </div>
+	          </md-input-container>
+	        </div>
+
+	        <div layout-gt-xs="row">
+	          <md-input-container class="md-block" flex-gt-xs>
+	            <label>Gender</label>
+	            <md-select name="gender" ng-model="user.gender" required>
+	              <md-option ng-repeat="g in gender" value="{{g}}">
+	                {{g}}
+	              </md-option>
+	            </md-select>
+	            <div ng-messages="userForm.gender.$error" role="alert" multiple>
+	              <div ng-message="required" class="my-message">You must select your Gender.</div>
+	            </div>
+	          </md-input-container>
+
+	          <md-input-container>
+	            <label>Birth Date</label>
+	            <md-datepicker name="birthDate" ng-model="user.birthDate" required></md-datepicker>
+	            <div ng-messages="userForm.birthDate.$error" role="alert" multiple>
+	              <div ng-message="required" class="my-message">You must supply your Birth Date.</div>
+	            </div>
+	          </md-input-container>
+	        </div>
+
+	        <div layout-gt-xs="row">
+	          <md-input-container class="md-block" flex-gt-xs>
+	            <label>City</label>
+	            <input name="city" ng-model="user.city" required>
+	            <div ng-messages="userForm.city.$error" role="alert" multiple>
+	              <div ng-message="required" class="my-message">You must supply your City.</div>
+	            </div>
+	          </md-input-container>
+
+	          <md-input-container class="md-block" flex-gt-xs>
+	            <label>Country</label>
+	            <md-select name="country" ng-model="user.country" required>
+	              <md-option ng-repeat="country in countries" value="{{country.abbrev}}">
+	                {{country.abbrev}}
+	              </md-option>
+	            </md-select>
+	            <div ng-messages="userForm.country.$error" role="alert" multiple>
+	              <div ng-message="required" class="my-message">You must select your Country.</div>
+	            </div>
+	          </md-input-container>
+
+	        </div>
+			<div layout-gt-xs="row">
+		        <md-input-container class="md-block">
+		          <label>Email</label>
+		          <input name="email" ng-model="user.email" type="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" required>
+	              <div ng-messages="userForm.email.$error" role="alert" multiple>
+		              <div ng-message="required" class="my-message">You must supply your Email.</div>
+		              <div ng-message="pattern" class="my-message">That doesn't look like a valid Email address.
+		              </div>
+	              </div>
+		        </md-input-container>
+
+		        <md-input-container class="md-block">
+		          <label>Mobile</label>
+		          <input name="mobile" ng-model="user.mobile" required>
+	              <div ng-messages="userForm.mobile.$error" role="alert" multiple>
+	             	 <div ng-message="required" class="my-message">You must supply your Mobile.</div>
+	              </div>
+		        </md-input-container>
+			</div>
+
+			<div layout-gt-xs="row">
+				<button class="btn btn-save" ng-click="fm.saveNewProfile()"><span class="glyphicon glyphicon-save icon-save"></span>Save</button>
+			</div>
+	      </form>
+	    </div>
+	</md-content>
+</div>

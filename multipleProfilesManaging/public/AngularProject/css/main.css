@@ -1,0 +1,80 @@
+body{
+	background-color: #263238;
+  	position: relative;
+	height: auto;
+	min-height: 100% !important;
+	font-family: "Times New Roman", Georgia, Serif;
+}
+.form {
+	background-color: #B0BEC5;
+	margin: 7%;
+}
+.form>div {
+	background-color: #CFD8DC;
+	padding: 5%;
+}
+.profile {
+	background-color: #B0BEC5;
+}
+.profile>div {
+	background-color: #CFD8DC;
+	padding: 5%;
+}
+.btn-save {
+	border-radius: 5%;
+	background-color: #0097A7;
+	font-weight: bold;
+	color: #CFD8DC;
+	font-family: "Times New Roman", Georgia, Serif;
+}
+.icon-save {
+	padding-right: 5px;
+}
+.picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.list-profiles {
+	background-color: #B0BEC5;
+	padding: 15px;
+	border-radius: 35px;
+	overflow-x:auto;
+	
+}
+.list-profiles-title>h3 {
+	color: #CFD8DC;
+	text-align: center;
+	font-family: 'Tangerine', serif;
+	font-size: 48px;
+	text-shadow: 4px 4px 4px #aaa;
+	margin-bottom: 25px;
+	margin-top: 25px;
+}
+.profile-details {
+	color: #0097A7;
+}
+h3.with-line {
+  border-bottom: 1px solid #0097A7;
+  color: #0097A7;
+  font-weight: bold;
+  padding-top: 30px;
+  margin-bottom: 14px;
+  line-height: 39px;
+  width: 100%; 
+}
+md-input-container>h4 {
+	color: rgb(121,134,203);
+}
+.remove-icon {
+	float: right;
+}
+.first-row {
+	color: #0097A7;
+	font-size: 16px;
+}
+
+
