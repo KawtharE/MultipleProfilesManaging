@@ -115,7 +115,7 @@ make sure all necessary extensions for Laravel are installed.
           
  Main functions of the server side are: 
  
-   - creating a new Profile
+   1. creating a new Profile
       
               function saveForm(ProfileFormRequest $request) {
                    $newProfile = $this->user->create([
@@ -137,7 +137,7 @@ make sure all necessary extensions for Laravel are installed.
               }
 
 
-   - retrieving all saved data from the server
+   2. retrieving all saved data from the server
       
               function getProfiles() {
                 $users = User::all();
