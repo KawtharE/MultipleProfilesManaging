@@ -159,9 +159,9 @@ make sure all necessary extensions for Laravel are installed.
           $ mkdir css
           $ mkdir js
           $ mkdir templates
-          $ npm inctall angular@1.5.11 angular-ui-router bootstrap@3 angular-material angular-animate@1.5.11 angular-aria@1.5.11 angular-messages@1.5.11 angular-smart-table angular-ui-bootstrap
+          $ npm install angular@1.5.11 angular-ui-router bootstrap@3 angular-material angular-animate@1.5.11 angular-aria@1.5.11 angular-messages@1.5.11 angular-smart-table angular-ui-bootstrap
  
- **note:** The version of angular-animate, angular-aria and angular-messages have to be the same version as angularjs!
+ **note:** The version of angular-animate, angular-aria and angular-messages must be the same version as angularjs!
 
 #### - create the master.php file under resources/views
 
@@ -169,7 +169,7 @@ make sure all necessary extensions for Laravel are installed.
 
 - Add metas:
          
-         	<meta charset="utf-8">
+          <meta charset="utf-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -214,7 +214,7 @@ make sure all necessary extensions for Laravel are installed.
 - Configure routing:
 
 		.config(function($stateProvider, $urlRouterProvider){
-		          $urlRouterProvider.otherwise('/form');
+		        $urlRouterProvider.otherwise('/form');
 			$stateProvider
 				.state('form', {
 			          	url: '/form',
@@ -230,12 +230,70 @@ make sure all necessary extensions for Laravel are installed.
 				});
 		})
                     
+#### - create templates/form.html and js/FormController.js
+The main function of this controller is saving a new profile, if the form is validate a new profile will be created and the user will be redirected to profiles page.
+
+		    	$http({
+		             method: 'POST',
+		             url: 'api/saveForm',
+		             data: "firstname="+$scope.user.firstname+"&lastname="+$scope.user.lastname+"&gender="
+		             		+$scope.user.gender+"&birthDate="+$scope.user.birthDate+"&country="+$scope.user.country
+		             		+"&city="+$scope.user.city+"&email="+$scope.user.email+"&mobile="+$scope.user.mobile,
+		         	headers: {'Content-Type': 'application/x-www-form-urlencoded'}	    		
+		    	}).success(function(response){
+		    		console.log(response);
+	    		    $window.location.href = '/#/profiles';
+		    	}).error(function(response){
+		    		console.log(response);
+	    			$scope.openAlert('Error', response.email[0]);
+		    	});
                     
+
+![Starting Screen](https://github.com/KawtharE/MultipleProfilesManaging/blob/master/assets/Screenshot%20from%202018-01-13%2017-45-34.png)
+ 
+ #### - create templates/profiles.html and js/ProfilesController.js
+ - displaying all saved profiles by retrieving them from the server:
+ 
+ 	    $scope.getProfiles = function(){
+	      $http({
+	        method: 'POST',
+	        url: '/api/getProfiles',
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	      }).success(function(response){
+	        $scope.profiles = response;
+	      }).error(function(error){
+
+	      });
+	    }
+
+![Starting Screen](https://github.com/KawtharE/MultipleProfilesManaging/blob/master/assets/Screenshot%20from%202018-01-13%2017-45-59.png)
+
+- display each one of theme as a Modal
+		
+		...
+	       .controller('ProfileCtrl', function ($scope, $uibModalInstance, user) {
+	        	$scope.user = user;
+	        })
+		...
+	    $scope.openProfile = function (_user, size) {
+
+	        var modalInstance = $uibModal.open({
+	          animation: true,
+	          controller: "ProfileCtrl",
+	          templateUrl: 'profile.html',
+	          backdrop  : 'static',
+	          keyboard  : false,
+	          size: size,
+	            resolve: {
+	                user: function()
+	                {
+	                    return _user;
+	                }
+	            }
+	        });
+	    }
                     
-                    
-                    
-                    
-                    
+![Starting Screen](https://github.com/KawtharE/MultipleProfilesManaging/blob/master/assets/Screenshot%20from%202018-01-13%2017-46-21.png)                 
                     
                     
                     
