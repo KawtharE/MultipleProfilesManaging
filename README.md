@@ -45,9 +45,9 @@ make sure all necessary extensions for Laravel are installed.
 -> The laravel project served on http://localhost:8000
 
 #### - Create and configure the database:
--From the PhpMyAdmin dashboard we need to create new database **profiles**
+- From the PhpMyAdmin dashboard we need to create new database **profiles**
 
--Edit **.env** file and remove **.env.example** file:
+- Edit **.env** file and remove **.env.example** file:
 
   *.env*
   
@@ -58,7 +58,7 @@ make sure all necessary extensions for Laravel are installed.
         DB_USERNAME=YOUR_DB_USERNAME
         DB_PASSWORD=YOUR_DB_PASSWORD
         
--Edit the **users table** file which is located under **database/migrations** folder:
+- Edit the **users table** file which is located under **database/migrations** folder:
 
         public function up()
         {
@@ -81,29 +81,29 @@ make sure all necessary extensions for Laravel are installed.
  
      $ php artisan migrate
  
- -Seed the users table by editing **database/seeds/DatabaseSeeder.php** 
+ - Seed the users table by editing **database/seeds/DatabaseSeeder.php** 
  
-     ...
-     public function run() {
-          Model::unguard();
-          DB::table('users')->delete();
-          $users = array(
-              ['uniqueID'=>uniqid(),'firstname'=>'Kaouther', 'lastname'=>'Mefteh', 'gender'=>'female', 'birthDate'=>'09/29/1992', 'country'=>'Tunisia', 'city'=>'Mahdia', 'email'=>'meftehkaouther@gmail.com', 'mobile'=>'123456789'],
-              ['uniqueID'=>uniqid(),'firstname'=>'Tommie', 'lastname'=>'Seese', 'gender'=>'male', 'birthDate'=>'10/04/1990', 'country'=>'France', 'city'=>'Paris', 'email'=>'TommieSeese@gmail.com', 'mobile'=>'123456789'],
-              ['uniqueID'=>uniqid(),'firstname'=>'Daine', 'lastname'=>'Voorhies', 'gender'=>'male', 'birthDate'=>'10/21/1978', 'country'=>'New Zealand', 'city'=>'Wellington', 'email'=>'DaineVoorhies@gmail.com', 'mobile'=>'123456789'],
-              ['uniqueID'=>uniqid(),'firstname'=>'Lewis', 'lastname'=>'Tawney', 'gender'=>'male', 'birthDate'=>'02/04/1992', 'country'=>'United state', 'city'=>'New York', 'email'=>'LewisTawney@gmail.com', 'mobile'=>'123456789'],
-              ['uniqueID'=>uniqid(),'firstname'=>'Ling', 'lastname'=>'Craft', 'gender'=>'male', 'birthDate'=>'02/13/1971', 'country'=>'Russia', 'city'=>'Moscow', 'email'=>'LingCraft@gmail.com', 'mobile'=>'123456789'],
-              ['uniqueID'=>uniqid(),'firstname'=>'Stephenie', 'lastname'=>'Noguera', 'gender'=>'female', 'birthDate'=>'12/29/1998', 'country'=>'Canada', 'city'=>'Ottawa', 'email'=>'StephenieNoguera@gmail.com', 'mobile'=>'123456789'],
-              ['uniqueID'=>uniqid(),'firstname'=>'Rodrigo', 'lastname'=>'Tulloch', 'gender'=>'male', 'birthDate'=>'01/26/1986', 'country'=>'Australia', 'city'=>'Canberra', 'email'=>'RodrigoTulloch@gmail.com', 'mobile'=>'123456789'] ,
-          );
-          foreach($users as $user){
-            User::create($user);
-          }
-          Model::reguard();
-      }
+               ...
+               public function run() {
+                    Model::unguard();
+                    DB::table('users')->delete();
+                    $users = array(
+                        ['uniqueID'=>uniqid(),'firstname'=>'Kaouther', 'lastname'=>'Mefteh', 'gender'=>'female', 'birthDate'=>'09/29/1992', 'country'=>'Tunisia', 'city'=>'Mahdia', 'email'=>'meftehkaouther@gmail.com', 'mobile'=>'123456789'],
+                        ['uniqueID'=>uniqid(),'firstname'=>'Tommie', 'lastname'=>'Seese', 'gender'=>'male', 'birthDate'=>'10/04/1990', 'country'=>'France', 'city'=>'Paris', 'email'=>'TommieSeese@gmail.com', 'mobile'=>'123456789'],
+                        ['uniqueID'=>uniqid(),'firstname'=>'Daine', 'lastname'=>'Voorhies', 'gender'=>'male', 'birthDate'=>'10/21/1978', 'country'=>'New Zealand', 'city'=>'Wellington', 'email'=>'DaineVoorhies@gmail.com', 'mobile'=>'123456789'],
+                        ['uniqueID'=>uniqid(),'firstname'=>'Lewis', 'lastname'=>'Tawney', 'gender'=>'male', 'birthDate'=>'02/04/1992', 'country'=>'United state', 'city'=>'New York', 'email'=>'LewisTawney@gmail.com', 'mobile'=>'123456789'],
+                        ['uniqueID'=>uniqid(),'firstname'=>'Ling', 'lastname'=>'Craft', 'gender'=>'male', 'birthDate'=>'02/13/1971', 'country'=>'Russia', 'city'=>'Moscow', 'email'=>'LingCraft@gmail.com', 'mobile'=>'123456789'],
+                        ['uniqueID'=>uniqid(),'firstname'=>'Stephenie', 'lastname'=>'Noguera', 'gender'=>'female', 'birthDate'=>'12/29/1998', 'country'=>'Canada', 'city'=>'Ottawa', 'email'=>'StephenieNoguera@gmail.com', 'mobile'=>'123456789'],
+                        ['uniqueID'=>uniqid(),'firstname'=>'Rodrigo', 'lastname'=>'Tulloch', 'gender'=>'male', 'birthDate'=>'01/26/1986', 'country'=>'Australia', 'city'=>'Canberra', 'email'=>'RodrigoTulloch@gmail.com', 'mobile'=>'123456789'] ,
+                    );
+                    foreach($users as $user){
+                      User::create($user);
+                    }
+                    Model::reguard();
+                }
  
  
-      $ php artisan db:seed
+          $ php artisan db:seed
  
  #### - Developing the server side functions:
  First of all we need to make a small but very important change in the **config/auth.php** file in order to be able to use the laravel project as an **API** and not a web app:
@@ -113,9 +113,9 @@ make sure all necessary extensions for Laravel are installed.
                'passwords' => 'users',
           ];
           
- -Main functions of the server side are: 
+ Main functions of the server side are: 
  
-   **1- creating a new Profile** 
+   - creating a new Profile
       
               function saveForm(ProfileFormRequest $request) {
                    $newProfile = $this->user->create([
@@ -137,7 +137,7 @@ make sure all necessary extensions for Laravel are installed.
               }
 
 
-   **2- retrieving all saved data from the server**
+   - retrieving all saved data from the server
       
               function getProfiles() {
                 $users = User::all();
