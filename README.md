@@ -144,6 +144,98 @@ make sure all necessary extensions for Laravel are installed.
                 return $users;
               }
  
+ Configure the **API** routes in **routes/api.php** that will be used to call the previous functions
+ 
+          Route::post('/saveForm', 'ProfilesController@saveForm');
+          Route::post('/getProfiles', 'ProfilesController@getProfiles');
+          
  ## 3- Creating the AngularJS project and developing the front-end
  
+ #### - create the AngularJS project and install the necessary dependencies:
  
+          $ cd public
+          $ mkdir AngularProject
+          $ cd AngularProject
+          $ mkdir css
+          $ mkdir js
+          $ mkdir templates
+          $ npm inctall angular@1.5.11 angular-ui-router bootstrap@3 angular-material angular-animate@1.5.11 angular-aria@1.5.11 angular-messages@1.5.11 angular-smart-table angular-ui-bootstrap
+ 
+ **note:** The version of angular-animate, angular-aria and angular-messages have to be the same version as angularjs!
+
+#### - create the master.php file under resources/views
+
+- Add **ng-app="ProfilesManaging"** to **html** tag.
+
+- Add metas:
+         
+         	<meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+- Import css and js files:
+                    
+                    <!--CSS files-->
+                    <link href="AngularProject/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <link href="AngularProject/node_modules/angular-material/angular-material.css" rel="stylesheet">
+                    <link rel="stylesheet" type="text/css" href="AngularProject/css/main.css">
+
+                    <!--JS files-->
+                    <script src="AngularProject/node_modules/angular/angular.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script src="AngularProject/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+                    <script src="AngularProject/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+                    <script src="AngularProject/node_modules/angular-aria/angular-aria.js"></script>
+                    <script src="AngularProject/node_modules/angular-animate/angular-animate.js"></script>
+                    <script src="AngularProject/node_modules/angular-material/angular-material.js"></script>
+                    <script src="AngularProject/node_modules/angular-messages/angular-messages.js"></script>
+                    <script src="AngularProject/node_modules/angular-smart-table/dist/smart-table.js"></script>
+                    <script src="AngularProject/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+
+
+                    <script src="AngularProject/js/app.js"></script>
+                    <script src="AngularProject/js/FormController.js"></script>
+                    <script src="AngularProject/js/ProfilesController.js"></script>
+
+- Add the **ui-view** tag
+
+#### - create js/app.js file
+
+- Inject dependencies:
+
+          	angular.module('ProfilesManaging', [
+			'ui.router', 
+			'ngMaterial', 
+			'ngMessages', 
+			'smart-table', 
+			'ui.bootstrap'
+			])
+                              
+- Configure routing:
+
+		.config(function($stateProvider, $urlRouterProvider){
+		          $urlRouterProvider.otherwise('/form');
+			$stateProvider
+				.state('form', {
+			          	url: '/form',
+					templateUrl: '/AngularProject/templates/form.html',
+					controller: 'FormController',
+					controllerAs: 'fm'
+				})
+				.state('profiles', {
+					url: '/profiles',
+					templateUrl: 'AngularProject/templates/profiles.html',
+					controller: 'ProfilesController',
+					controllerAs: 'pf'
+				});
+		})
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
